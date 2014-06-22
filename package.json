@@ -1,0 +1,19 @@
+{
+  "name": "react-nine-patch",
+  "version": "0.0.0",
+  "description": "react-nine-patch ================",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nickr500/react-nine-patch.git"
+  },
+  "author": "Nick Rioux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickr500/react-nine-patch/issues"
+  },
+  "homepage": "https://github.com/nickr500/react-nine-patch",
+}
