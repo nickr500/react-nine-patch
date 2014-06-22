@@ -7,18 +7,28 @@ module.exports = React.createClass({
         var img = new Image();
         img.src = this.props.src;
         img.onLoad = function() {
-            this.setState({ img: this });
+            this.setState({ image: this });
         };
     },
 
     // get the image when the component first loads
-    componentWillMount: function() {
+    componentDidMount: function() {
         this.requestImage();
     },
 
     // update the image when the src property changes
     componentWillReceiveProps: function() {
         this.requestImage();
+    },
+
+    draw: function() {
+        var canvas = this.refs.canvas.getDomNode();
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(this.state.image);
+    },
+
+    componentDidUpdate: function() {
+        this.draw();
     },
 
     render: function() { 
