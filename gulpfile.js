@@ -4,6 +4,7 @@ var browserify = require('gulp-browserify');
 var clean = require('gulp-clean');
 var serve = require('gulp-serve');
 var rename = require('gulp-rename');
+var livereload = require('gulp-livereload');
 
 gulp.task('clean', function() {
     return gulp.src(['dist', 'examples/dist'])
@@ -35,12 +36,12 @@ gulp.task('bundle', ['jsx'], function() {
         .pipe(gulp.dest('examples/dist'));
 });*/
 
-gulp.task('example-copy', ['jsx'], function() {
+gulp.task('example-copy', ['jsx'], function () {
     return gulp.src(['examples/*.{html,png}', 'dist/react9p.js'])
         .pipe(gulp.dest('examples/dist'));
 });
 
-gulp.task('example-browserify', ['example-copy', 'clean'], function() {
+gulp.task('example-browserify', ['example-copy', 'clean'], function () {
     return gulp.src('examples/example.js')
         .pipe(browserify({
             insertGlobals: true,
@@ -49,6 +50,16 @@ gulp.task('example-browserify', ['example-copy', 'clean'], function() {
         .pipe(gulp.dest('examples/dist'));
 });
 
-gulp.task('example', ['example-browserify'], serve('examples/dist'));
-gulp.task('default', ['example']);
+gulp.task('example-serve', ['example-browserify'], serve('examples/dist'));
+
+gulp.task('example-watch', ['example-serve'], function () {
+    livereload.listen();
+    gulp.watch(['react9p.jsx', 'examples/*.{html,png,js}'], ['example-browserify']);
+    gulp.watch(['react9p.jsx', 'examples/*.{html,png,js}'], function() {
+        console.log('change');
+    });
+    gulp.watch('examples/dist/*').on('change', livereload.changed);
+});
+
+gulp.task('default', ['example-watch']);
 
