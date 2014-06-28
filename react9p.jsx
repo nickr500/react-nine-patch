@@ -178,7 +178,7 @@ module.exports = React.createClass({
 
     render: function() { 
         return (
-            <canvas ref="canvas" width="500" height="500"></canvas>
+            <canvas ref="canvas" width={this.props.width} height={this.props.height}></canvas>
         );
     }
 });
