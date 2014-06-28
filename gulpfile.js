@@ -36,7 +36,7 @@ gulp.task('bundle', ['jsx'], function() {
 });*/
 
 gulp.task('example-copy', ['jsx'], function() {
-    return gulp.src(['examples/*.html', 'dist/react9p.js'])
+    return gulp.src(['examples/*.{html,png}', 'dist/react9p.js'])
         .pipe(gulp.dest('examples/dist'));
 });
 
