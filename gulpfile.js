@@ -47,11 +47,12 @@ gulp.task('example-copy', ['copy', 'jsx'], function () {
 });
 
 gulp.task('example-browserify', ['example-copy', 'clean'], function () {
-    return gulp.src('examples/example.js')
+    return gulp.src('examples/example.jsx')
         .pipe(browserify({
             insertGlobals: true,
             transform: ['reactify']
         }))
+        .pipe(rename('example.js'))
         .pipe(gulp.dest('examples/dist'));
 });
 
