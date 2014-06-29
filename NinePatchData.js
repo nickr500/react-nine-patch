@@ -14,11 +14,16 @@ function getCanvasForImage(image) {
  * Reads the indicators in a 9-patch image and stores the data
  *
  * Attributes:
- * width              - height of the image in pixels
- * height             - width of the image in pixels
+ * width              - width of the image in pixels (not including the outermost columns)
+ * height             - height of the image in pixels (not including the outermost rows)
+ * canvas             - a canvas with the image on it
  * context            - a rendering context with the image data
  * getSection(x, y)   - get one of the 9 sections the image has
  *                      been divided into
+ * edgeLeftSize/      - get the size of the unstretchable areas on the image's edges       
+ * edgeRightSize/
+ * edgeTopSize/
+ * edgeBottom size
  */
 function NinePatchData(image) {
     this.width = image.width - 2;
